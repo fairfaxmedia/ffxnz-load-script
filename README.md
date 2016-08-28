@@ -30,6 +30,10 @@ Using NPM:
     });
 
 
+## Tests
+
+    npm test
+
 ## License
 
 MIT
