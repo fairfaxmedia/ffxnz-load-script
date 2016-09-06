@@ -2,7 +2,7 @@
   "name": "load-script",
   "version": "2.0.0",
   "description": "A script loader which is useful for controlling the dynamic loading of scripts",
-  "main": "index.js",
+  "main": "./src/nz_ffx_loadScript.js",
   "scripts": {
     "test": "karma start karma.conf.js"
   },
