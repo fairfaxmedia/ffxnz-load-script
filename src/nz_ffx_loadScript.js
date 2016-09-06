@@ -9,15 +9,11 @@
  * Inspired by the Filament Group's work on script loading: https://github.com/filamentgroup/loadJS
  */
 
-// eslint-disable-next-line vars-on-top
-window.nz = window.nz || {};
-window.nz.ffx = window.nz.ffx || {};
-
-(function(namespace) {
+(function(window) {
     'use strict';
 
     // Create an array for storing our script promises.
-    namespace.scriptsLoaded = namespace.scriptsLoaded || [];
+    var scriptsLoaded = [];
 
     /**
      * Load the supplied script URL, returing a promise.
@@ -31,7 +27,7 @@ window.nz.ffx = window.nz.ffx || {};
      *                          the script asynchronously.
      *                          Defaults to null, effectively meaning async loading
      *                          but synchronous execution.
-     * @return {window.Promise} The promise representing whether the script has loaded.
+     * @return {Promise}        The promise representing whether the script has loaded.
      */
     function _loadScript(url, async) {
         var scriptPromise = new window.Promise(function(resolve, reject) {
@@ -70,16 +66,12 @@ window.nz.ffx = window.nz.ffx || {};
                 });
             }
 
-            if (namespace.log) {
-                namespace.log('Loading script ' + url);
-            }
-
             head.appendChild(script);
         });
 
         // Add our script to the scriptsLoaded array so other parts of the application
         // can determine whether a given script url is / has been script loaded.
-        namespace.scriptsLoaded.push({
+        scriptsLoaded.push({
             url: url,
             promise: scriptPromise,
         })
@@ -94,12 +86,12 @@ window.nz.ffx = window.nz.ffx || {};
      * @param  {Boolean} async   A Boolean indicating whether we want to execute
      *                           the script asynchronously.
      *                           Defaults to null, meaning async execution.
-     * @return {window.Promise}  The promise representing whether the script has loaded.
+     * @return {Promise}         The promise representing whether the script has loaded.
      */
-    namespace.loadScript = function(url, async) {
+    var loadScript = function(url, async) {
         var promise;
 
-        var scripts = namespace.scriptsLoaded.filter(function(item) {
+        var scripts = scriptsLoaded.filter(function(item) {
             return item.url === url;
         });
 
@@ -112,4 +104,16 @@ window.nz.ffx = window.nz.ffx || {};
 
         return promise;
     }
-}(window.nz.ffx))
+
+    if (typeof exports !== 'undefined') {
+        // commonjs
+        exports.loadScript = loadScript;
+    } else {
+        // browserland
+        window.nz = window.nz || {};
+        window.nz.ffx = window.nz.ffx || {};
+        window.nz.ffx.loadScript = loadScript;
+        window.nz.ffx.scriptsLoaded = scriptsLoaded;
+    }
+
+}(typeof global !== 'undefined' ? global : this))
