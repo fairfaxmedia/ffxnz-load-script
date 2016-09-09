@@ -105,9 +105,9 @@
         return promise;
     }
 
-    if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
         // commonjs
-        exports.loadScript = loadScript;
+        exports = module.exports = loadScript;
     } else {
         // browserland
         window.nz = window.nz || {};
