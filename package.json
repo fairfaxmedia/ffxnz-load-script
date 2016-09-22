@@ -1,6 +1,6 @@
 {
   "name": "load-script",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A script loader which is useful for controlling the dynamic loading of scripts",
   "main": "./src/nz_ffx_loadScript.js",
   "scripts": {
