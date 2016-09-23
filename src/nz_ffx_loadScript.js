@@ -88,7 +88,7 @@
      *                           Defaults to null, meaning async execution.
      * @return {Promise}         The promise representing whether the script has loaded.
      */
-    var loadScript = function(url, async) {
+    var ffxnzLoadScript = function(url, async) {
         var promise;
 
         var scripts = scriptsLoaded.filter(function(item) {
@@ -107,12 +107,12 @@
 
     if (typeof module !== 'undefined' && module.exports) {
         // commonjs
-        exports = module.exports = loadScript;
+        exports = module.exports = ffxnzLoadScript;
     } else {
         // browserland
         window.nz = window.nz || {};
         window.nz.ffx = window.nz.ffx || {};
-        window.nz.ffx.loadScript = loadScript;
+        window.nz.ffx.loadScript = ffxnzLoadScript;
         window.nz.ffx.scriptsLoaded = scriptsLoaded;
     }
 

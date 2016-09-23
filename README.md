@@ -16,8 +16,8 @@ Inspired by the Filament Group's work on script loading: https://github.com/fila
 Using NPM:
 
     # Once installed, the script can be found at:
-    # node_modules/load-script/src/nz_ffx_loadScript
-    npm install --save git+https://github.com/fairfaxmedia/load-script.git
+    # node_modules/ffxnz-load-script/src/nz_ffx_loadScript
+    npm install --save git+https://github.com/fairfaxmedia/ffxnz-load-script.git
 
 
 ## Usage
