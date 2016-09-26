@@ -16,7 +16,7 @@
     var scriptsLoaded = [];
 
     /**
-     * Load the supplied script URL, returing a promise.
+     * Load the supplied script URL, returning a promise.
      * If instructed, load the script asynchronously, otherwise load the script
      * synchronously. Note that synchronous means that the script will still be
      * loaded asynchronously, but execution will happen synchronously in the order
@@ -74,7 +74,7 @@
         scriptsLoaded.push({
             url: url,
             promise: scriptPromise,
-        })
+        });
 
         return scriptPromise;
     }
@@ -103,7 +103,7 @@
         }
 
         return promise;
-    }
+    };
 
     if (typeof module !== 'undefined' && module.exports) {
         // commonjs
@@ -116,4 +116,4 @@
         window.nz.ffx.scriptsLoaded = scriptsLoaded;
     }
 
-}(typeof global !== 'undefined' ? global : this))
+}(typeof global !== 'undefined' ? global : this));
